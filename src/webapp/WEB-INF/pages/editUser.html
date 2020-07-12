@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<div align="center">
+
+    <form th:action="@{/edit}" th:object="${user}" method="POST">
+        <table border="1" cellpadding="5">
+            <caption>
+                <h2>Edit User</h2>
+            </caption>
+
+            <input type="hidden" name="id" th:value="*{id}"/>
+
+            <tr>
+                <th>Name:</th>
+                <td><input type="text" name="name" th:value="*{name}"/></td>
+            </tr>
+            <tr>
+                <th>Last Name:</th>
+                <td><input type="text" name="lastName" th:value="*{lastName}"/></td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td><input type="text" name="email" th:value="*{email}"/></td>
+            </tr>
+            <tr>
+                <th>Password:</th>
+                <td><input type="text" name="password" th:value="*{password}"/></td>
+            </tr>
+            <tr>
+                <th>Roles:</th>
+                <td>
+                    <div th:each="rl: ${roles}">
+                        <input type="checkbox" name="usrRoles"
+                               th:value="${rl.role}"
+                               th:checked="${#lists.contains(user.roles, rl)}"/>
+                        <label th:text="${rl.role}"></label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Save"/>
+    </form>
+    <h3>
+        <a href="/">Back to User List</a>
+    </h3>
+</div>
+</body>
+</html>
