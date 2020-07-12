@@ -7,7 +7,7 @@
 </head>
 <body>
 <div align="center">
-    <form th:action="@{/add}" th:object="${user}" method="POST">
+    <form th:action="@{/admin/add}" th:object="${user}" method="POST">
         <table border="1" cellpadding="5">
             <caption>
                 <h2>Add New User</h2>
@@ -33,7 +33,7 @@
                 <td>
                     <div th:each="rl: ${roles}">
                         <input type="checkbox" name="usrRoles" th:value="${rl.role}"/>
-                        <label th:text="${rl.role}"></label>
+                        <label th:text="${rl.role}"/>
                     </div>
                 </td>
             </tr>
@@ -42,7 +42,7 @@
         <input type="submit" value="Save"/>
     </form>
     <h3>
-        <a href="/">Back to User List</a>
+        <a href="/admin">Back to User List</a>
     </h3>
 </div>
 </body>

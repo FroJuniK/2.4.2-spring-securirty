@@ -3,7 +3,6 @@ package hiber.dao;
 import hiber.model.Role;
 import hiber.model.User;
 import java.util.List;
-import java.util.Set;
 
 public interface UserDao {
 
@@ -20,4 +19,6 @@ public interface UserDao {
     List<Role> getAllRoles();
 
     Role getRoleByName(String name);
+
+    User loadUserByUsername(String s);
 }

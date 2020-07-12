@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import javax.persistence.TypedQuery;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class UserDaoImp implements UserDao {
@@ -46,11 +45,17 @@ public class UserDaoImp implements UserDao {
         return query.getResultList();
     }
 
-    @Override
     public Role getRoleByName(String name) {
         TypedQuery<Role> query = factory.getCurrentSession().
                 createQuery("FROM Role WHERE role = :name").
                 setParameter("name", name);
+        return query.getSingleResult();
+    }
+
+    public User loadUserByUsername(String s) {
+        TypedQuery<User> query = factory.getCurrentSession().
+                createQuery("FROM User WHERE name = :name").
+                setParameter("name", s);
         return query.getSingleResult();
     }
 }

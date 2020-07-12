@@ -7,8 +7,7 @@
 </head>
 <body>
 <div align="center">
-
-    <table border="1" cellpadding="5">
+    <table border cellpadding="5">
         <caption><h2>Users</h2></caption>
         <tr>
             <th>ID</th>
@@ -30,17 +29,17 @@
                     <div th:each="rl : ${usr.roles}" th:text="${rl.role}"></div>
                 </td>
                 <td>
-                    <a th:href="@{'/edit?id=' + ${usr.id}}">Edit</a>
+                    <a th:href="@{'/admin/edit?id=' + ${usr.id}}">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a th:href="@{'/delete?id=' + ${usr.id}}">Delete</a>
+                    <a th:href="@{'/admin/delete?id=' + ${usr.id}}">Delete</a>
                 </td>
             </tr>
         </th:block>
     </table>
 
-    <h3>
-        <a href="/add">Add New User</a>
-    </h3>
+    <h3><a href="/admin/add">Add New User</a></h3>
+
+    <h3><a href="/logout">Sign out</a></h3>
 </div>
 </body>
 </html>

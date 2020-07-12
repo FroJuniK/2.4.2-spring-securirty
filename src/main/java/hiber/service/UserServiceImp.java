@@ -4,12 +4,15 @@ import hiber.dao.UserDao;
 import hiber.model.Role;
 import hiber.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class UserServiceImp implements UserService {
+public class UserServiceImp implements UserService, UserDetailsService {
 
     @Autowired
     private UserDao dao;
@@ -47,5 +50,10 @@ public class UserServiceImp implements UserService {
     @Transactional(readOnly = true)
     public Role getRoleByName(String name) {
         return dao.getRoleByName(name);
+    }
+
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return dao.loadUserByUsername(s);
     }
 }
