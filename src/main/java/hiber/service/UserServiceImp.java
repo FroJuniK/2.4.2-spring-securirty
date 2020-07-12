@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
@@ -17,12 +18,12 @@ public class UserServiceImp implements UserService, UserDetailsService {
     @Autowired
     private UserDao dao;
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<User> getAllUsers() {
         return dao.getAllUsers();
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public User getUserById(long id) {
         return dao.getUserById(id);
     }
@@ -42,17 +43,17 @@ public class UserServiceImp implements UserService, UserDetailsService {
         dao.editUser(user);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<Role> getAllRoles() {
         return dao.getAllRoles();
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public Role getRoleByName(String name) {
         return dao.getRoleByName(name);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return dao.loadUserByUsername(s);
     }
